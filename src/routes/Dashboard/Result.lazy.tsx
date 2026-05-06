@@ -5,7 +5,6 @@ export const Route = createLazyFileRoute('/Dashboard/Result')({
 })
 
 function ResultPage() {
-  // Ambil data dari URL dengan cara yang lebih aman buat TanStack
   const search: any = Route.useSearch() 
   const gula = Number(search.gula) || 0
   const garam = Number(search.garam) || 0
@@ -24,9 +23,29 @@ function ResultPage() {
     { name: 'Lemak Jenuh', value: lemak, unit: 'g', status: checkStatus(lemak, 'lemak') },
   ]
 
+  // Cek apakah ada salah satu yang TINGGI
+  const isAnyHigh = results.some(item => item.status.label === 'TINGGI')
+
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#f0fdf4', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px', fontFamily: 'sans-serif' }}>
       <div style={{ backgroundColor: 'white', padding: '40px', borderRadius: '32px', width: '100%', maxWidth: '400px', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.08)' }}>
+        
+        {/* --- FITUR 3: VISUAL INDICATOR (LAMPU LALU LINTAS) --- */}
+        <div style={{
+          padding: '20px',
+          borderRadius: '20px',
+          textAlign: 'center',
+          backgroundColor: isAnyHigh ? '#fee2e2' : '#dcfce7',
+          color: isAnyHigh ? '#b91c1c' : '#15803d',
+          fontWeight: 'bold',
+          marginBottom: '25px',
+          border: `2px solid ${isAnyHigh ? '#ef4444' : '#22c55e'}`
+        }}>
+          <span style={{ fontSize: '30px', display: 'block' }}>{isAnyHigh ? '⚠️' : '✅'}</span>
+          {isAnyHigh ? 'KONSUMSI DIBATASI!' : 'PRODUK INI AMAN'}
+        </div>
+        {/* ---------------------------------------------------- */}
+
         <h2 style={{ textAlign: 'center', color: '#064e3b', marginBottom: '32px', fontWeight: '800' }}>Ringkasan Nutrisi</h2>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

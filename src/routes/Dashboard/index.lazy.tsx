@@ -10,7 +10,6 @@ function DashboardPage() {
   const [inputs, setInputs] = useState({ gula: '', garam: '', lemak: '' })
 
   const handleCek = () => {
-    // Pastikan pakai navigate.search supaya TanStack Router gak bingung
     navigate({
       to: '/Dashboard/Result',
       search: {
@@ -39,13 +38,32 @@ function DashboardPage() {
               <input 
                 type="number" 
                 placeholder={`Masukkan ${key}...`}
-                style={{ width: '100%', padding: '14px', borderRadius: '16px', border: '2px solid #f3f4f6', outline: 'none', transition: 'border-color 0.2s' }}
+                style={{ width: '100%', padding: '14px', borderRadius: '16px', border: '2px solid #f3f4f6', outline: 'none', transition: 'border-color 0.2s', boxSizing: 'border-box' }}
                 onChange={(e) => setInputs({...inputs, [key]: e.target.value})}
-                onFocus={(e) => e.target.style.borderColor = '#10b981'}
-                onBlur={(e) => e.target.style.borderColor = '#f3f4f6'}
+                onFocus={(e) => (e.target.style.borderColor = '#10b981')}
+                onBlur={(e) => (e.target.style.borderColor = '#f3f4f6')}
               />
             </div>
           ))}
+
+          {/* --- TIPS SEHAT SEBELUM TOMBOL --- */}
+          <div style={{ 
+            padding: '15px', 
+            backgroundColor: '#f0fdf4', 
+            borderRadius: '16px',
+            border: '1px solid #10b981',
+            marginTop: '5px'
+          }}>
+            <p style={{ margin: '0 0 5px 0', fontSize: '12px', fontWeight: 'bold', color: '#166534' }}>💡 Tips Sehat</p>
+            <p style={{ margin: 0, fontSize: '13px', color: '#374151', lineHeight: '1.4' }}>
+              {[
+                "Batasi gula maksimal 4 sendok makan (50g) per hari.",
+                "Garam berlebih bisa memicu darah tinggi, batasi 1 sendok teh per hari.",
+                "Cek label kemasan: Pilih produk dengan lemak jenuh paling rendah.",
+                "Minum air putih setelah konsumsi makanan kemasan untuk bantu ginjal."
+              ][Math.floor(Math.random() * 4)]}
+            </p>
+          </div>
           
           <button 
             onClick={handleCek}
