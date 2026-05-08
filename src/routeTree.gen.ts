@@ -28,6 +28,7 @@ import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-p
 import { Route as ClerkAuthenticatedRouteRouteImport } from './routes/clerk/_authenticated/route'
 import { Route as ClerkauthRouteRouteImport } from './routes/clerk/(auth)/route'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
+import { Route as DashboardIndexLazyDESKTOPDA287BFRouteImport } from './routes/Dashboard/index.lazy-DESKTOP-DA287BF'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
@@ -42,6 +43,7 @@ import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_auth
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
+import { Route as DashboardResultLazyDESKTOPDA287BFRouteImport } from './routes/Dashboard/Result.lazy-DESKTOP-DA287BF'
 
 const ResultLazyRouteImport = createFileRoute('/result')()
 const DashboardResultLazyRouteImport = createFileRoute('/Dashboard/Result')()
@@ -143,6 +145,12 @@ const AuthenticatedSettingsRouteRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const DashboardIndexLazyDESKTOPDA287BFRoute =
+  DashboardIndexLazyDESKTOPDA287BFRouteImport.update({
+    id: '/Dashboard/index/lazy-DESKTOP-DA287BF',
+    path: '/Dashboard/index/lazy-DESKTOP-DA287BF',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedUsersIndexRoute = AuthenticatedUsersIndexRouteImport.update({
   id: '/users/',
   path: '/users/',
@@ -221,6 +229,12 @@ const AuthenticatedErrorsErrorRoute =
     path: '/errors/$error',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const DashboardResultLazyDESKTOPDA287BFRoute =
+  DashboardResultLazyDESKTOPDA287BFRouteImport.update({
+    id: '/lazy-DESKTOP-DA287BF',
+    path: '/lazy-DESKTOP-DA287BF',
+    getParentRoute: () => DashboardResultLazyRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedIndexRoute
@@ -237,8 +251,9 @@ export interface FileRoutesByFullPath {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
-  '/Dashboard/Result': typeof DashboardResultLazyRoute
+  '/Dashboard/Result': typeof DashboardResultLazyRouteWithChildren
   '/Dashboard/': typeof DashboardIndexRoute
+  '/Dashboard/Result/lazy-DESKTOP-DA287BF': typeof DashboardResultLazyDESKTOPDA287BFRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
@@ -253,6 +268,7 @@ export interface FileRoutesByFullPath {
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/tasks/': typeof AuthenticatedTasksIndexRoute
   '/users/': typeof AuthenticatedUsersIndexRoute
+  '/Dashboard/index/lazy-DESKTOP-DA287BF': typeof DashboardIndexLazyDESKTOPDA287BFRoute
 }
 export interface FileRoutesByTo {
   '/clerk': typeof ClerkAuthenticatedRouteRouteWithChildren
@@ -267,9 +283,10 @@ export interface FileRoutesByTo {
   '/404': typeof errors404Route
   '/500': typeof errors500Route
   '/503': typeof errors503Route
-  '/Dashboard/Result': typeof DashboardResultLazyRoute
+  '/Dashboard/Result': typeof DashboardResultLazyRouteWithChildren
   '/Dashboard': typeof DashboardIndexRoute
   '/': typeof AuthenticatedIndexRoute
+  '/Dashboard/Result/lazy-DESKTOP-DA287BF': typeof DashboardResultLazyDESKTOPDA287BFRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
@@ -284,6 +301,7 @@ export interface FileRoutesByTo {
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
+  '/Dashboard/index/lazy-DESKTOP-DA287BF': typeof DashboardIndexLazyDESKTOPDA287BFRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -303,9 +321,10 @@ export interface FileRoutesById {
   '/(errors)/404': typeof errors404Route
   '/(errors)/500': typeof errors500Route
   '/(errors)/503': typeof errors503Route
-  '/Dashboard/Result': typeof DashboardResultLazyRoute
+  '/Dashboard/Result': typeof DashboardResultLazyRouteWithChildren
   '/Dashboard/': typeof DashboardIndexRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/Dashboard/Result/lazy-DESKTOP-DA287BF': typeof DashboardResultLazyDESKTOPDA287BFRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
@@ -320,6 +339,7 @@ export interface FileRoutesById {
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
+  '/Dashboard/index/lazy-DESKTOP-DA287BF': typeof DashboardIndexLazyDESKTOPDA287BFRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -340,6 +360,7 @@ export interface FileRouteTypes {
     | '/503'
     | '/Dashboard/Result'
     | '/Dashboard/'
+    | '/Dashboard/Result/lazy-DESKTOP-DA287BF'
     | '/errors/$error'
     | '/settings/account'
     | '/settings/appearance'
@@ -354,6 +375,7 @@ export interface FileRouteTypes {
     | '/settings/'
     | '/tasks/'
     | '/users/'
+    | '/Dashboard/index/lazy-DESKTOP-DA287BF'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/clerk'
@@ -371,6 +393,7 @@ export interface FileRouteTypes {
     | '/Dashboard/Result'
     | '/Dashboard'
     | '/'
+    | '/Dashboard/Result/lazy-DESKTOP-DA287BF'
     | '/errors/$error'
     | '/settings/account'
     | '/settings/appearance'
@@ -385,6 +408,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/tasks'
     | '/users'
+    | '/Dashboard/index/lazy-DESKTOP-DA287BF'
   id:
     | '__root__'
     | '/_authenticated'
@@ -406,6 +430,7 @@ export interface FileRouteTypes {
     | '/Dashboard/Result'
     | '/Dashboard/'
     | '/_authenticated/'
+    | '/Dashboard/Result/lazy-DESKTOP-DA287BF'
     | '/_authenticated/errors/$error'
     | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
@@ -420,6 +445,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/'
     | '/_authenticated/tasks/'
     | '/_authenticated/users/'
+    | '/Dashboard/index/lazy-DESKTOP-DA287BF'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -436,8 +462,9 @@ export interface RootRouteChildren {
   errors404Route: typeof errors404Route
   errors500Route: typeof errors500Route
   errors503Route: typeof errors503Route
-  DashboardResultLazyRoute: typeof DashboardResultLazyRoute
+  DashboardResultLazyRoute: typeof DashboardResultLazyRouteWithChildren
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardIndexLazyDESKTOPDA287BFRoute: typeof DashboardIndexLazyDESKTOPDA287BFRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -575,6 +602,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/Dashboard/index/lazy-DESKTOP-DA287BF': {
+      id: '/Dashboard/index/lazy-DESKTOP-DA287BF'
+      path: '/Dashboard/index/lazy-DESKTOP-DA287BF'
+      fullPath: '/Dashboard/index/lazy-DESKTOP-DA287BF'
+      preLoaderRoute: typeof DashboardIndexLazyDESKTOPDA287BFRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/users/': {
       id: '/_authenticated/users/'
       path: '/users'
@@ -673,6 +707,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedErrorsErrorRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/Dashboard/Result/lazy-DESKTOP-DA287BF': {
+      id: '/Dashboard/Result/lazy-DESKTOP-DA287BF'
+      path: '/lazy-DESKTOP-DA287BF'
+      fullPath: '/Dashboard/Result/lazy-DESKTOP-DA287BF'
+      preLoaderRoute: typeof DashboardResultLazyDESKTOPDA287BFRouteImport
+      parentRoute: typeof DashboardResultLazyRoute
+    }
   }
 }
 
@@ -767,6 +808,18 @@ const ClerkRouteRouteWithChildren = ClerkRouteRoute._addFileChildren(
   ClerkRouteRouteChildren,
 )
 
+interface DashboardResultLazyRouteChildren {
+  DashboardResultLazyDESKTOPDA287BFRoute: typeof DashboardResultLazyDESKTOPDA287BFRoute
+}
+
+const DashboardResultLazyRouteChildren: DashboardResultLazyRouteChildren = {
+  DashboardResultLazyDESKTOPDA287BFRoute:
+    DashboardResultLazyDESKTOPDA287BFRoute,
+}
+
+const DashboardResultLazyRouteWithChildren =
+  DashboardResultLazyRoute._addFileChildren(DashboardResultLazyRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   ClerkRouteRoute: ClerkRouteRouteWithChildren,
@@ -781,8 +834,9 @@ const rootRouteChildren: RootRouteChildren = {
   errors404Route: errors404Route,
   errors500Route: errors500Route,
   errors503Route: errors503Route,
-  DashboardResultLazyRoute: DashboardResultLazyRoute,
+  DashboardResultLazyRoute: DashboardResultLazyRouteWithChildren,
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardIndexLazyDESKTOPDA287BFRoute: DashboardIndexLazyDESKTOPDA287BFRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
